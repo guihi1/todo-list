@@ -4,9 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <title>Todo List</title>
 </head>
 <body>
+    <div class="grid-container">
+        <header>
+            <div class="logo">
+                <h1>Todo List </h1>
+                <span class="material-symbols-outlined size-48">list_alt</span>
+            </div>
+            <button type="button" class="plus-button">Add new task <span class="material-symbols-outlined size-40">add</span></button>
+        </header>
+        <div class="side-bar">
+            <ul>
+                <li>Inbox</li>
+                <li>Today</li>
+                <li>Week</li>
+            </ul>
+            <div class="drop-menu">
+                <p class="dropdown-button">Projects</p>
+                <ul class="dropdown-content">
+                    <li>test</li>
+                    <li>test</li>
+                    <li>test</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <div class="tasks">
+                <h2>Inbox</h2>
+            </div>
+        </div>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
