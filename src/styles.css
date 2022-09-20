@@ -5,6 +5,32 @@
     font-family: Roboto, sans-serif;
 }
 
+.page-mask {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.6);
+    visibility: hidden;
+}
+
+form {
+    position: fixed;
+    left: 50%;
+    top: 25%;
+    transform: translateX(-50%);
+    width: 35%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #CAF0F8;
+    padding: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
 .grid-container  {
     display: grid;
     grid-template-columns: 1fr 5fr;
