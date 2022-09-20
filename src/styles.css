@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: Roboto, sans-serif;
 }
 
 .grid-container  {
@@ -54,6 +55,7 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
+    user-select: none;
 }
 
 .side-bar {
@@ -88,6 +90,8 @@ li {
     display: flex;
     align-items: center;
     gap: 5px;
+    user-select: none;
+    padding: 5px;
 }
 
 li:hover, li:focus {
@@ -102,6 +106,8 @@ li:hover, li:focus {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    user-select: none;
+    padding: 5px;
 }
 
 #expand {
@@ -116,10 +122,14 @@ li:hover, li:focus {
 .dropdown-content {
     display: none;
     position: absolute;
-    width: 100%;
+    width: 90%;
     margin-left: 10px;
 }
 
 .show {
     display: block;
+}
+
+.project-button {
+    justify-content: space-evenly;
 }
