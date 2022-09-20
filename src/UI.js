@@ -12,3 +12,15 @@ export function dropdown() {
         }
     });   
 }
+
+export function addProject() {
+    const projects = document.querySelector(".dropdown-content");
+    const projectButton = document.createElement("li");
+    const icon = document.createElement("span");
+    icon.textContent = "add";
+    icon.classList.add("material-symbols-outlined");
+    projectButton.textContent = "Add project";
+    projectButton.classList.add("project-button");
+    projects.appendChild(projectButton);
+    projectButton.appendChild(icon);
+}
