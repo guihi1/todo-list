@@ -85,6 +85,9 @@ li {
     font-size: 20px;
     cursor: pointer;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 li:hover, li:focus {
@@ -92,9 +95,17 @@ li:hover, li:focus {
 }
 
 .dropdown-button {
+    width: 80%;
     margin-left: 10px;
     font-size: 20px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#expand {
+    margin-top: 5px;
 }
 
 .drop-menu {
