@@ -24,3 +24,19 @@ export function addProject() {
     projects.appendChild(projectButton);
     projectButton.appendChild(icon);
 }
+
+export function showForm() {
+    const addTaskButton = document.querySelector(".plus-button");
+    addTaskButton.addEventListener("click", () => {
+        document.querySelector(".page-mask").style.visibility = "visible";
+        document.querySelector("form").style.visibility = "visible";
+    })
+}
+
+export function hideForm() {
+    const addButton = document.getElementById("add");
+    addButton.addEventListener("click", () => {
+        document.querySelector(".page-mask").style.visibility = "hidden";
+        document.querySelector("form").style.visibility = "hidden";
+    })   
+}
