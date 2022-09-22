@@ -1,3 +1,5 @@
+import { myTasks } from "./index";
+
 export function dropdown() {
     const dropButton = document.querySelector(".dropdown-button");
     const expand = document.getElementById("expand");
@@ -35,8 +37,35 @@ export function showForm() {
 
 export function hideForm() {
     const addButton = document.getElementById("add");
+    const cancel = document.getElementById("cancel");
     addButton.addEventListener("click", () => {
         document.querySelector(".page-mask").style.visibility = "hidden";
         document.querySelector("form").style.visibility = "hidden";
+    })
+    cancel.addEventListener("click", () => {
+        document.querySelector(".page-mask").style.visibility = "hidden";
+        document.querySelector("form").style.visibility = "hidden";
     })   
+}
+
+export function showTasks() {
+    const content = document.querySelector(".tasks");
+    while(content.firstChild){
+        content.removeChild(content.lastChild);
+    }
+    for(let i = 0; i < myTasks.length; i++){
+        const div = document.createElement("div");
+        div.classList.add("task");
+        div.textContent = myTasks[i][title];
+        content.appendChild(div);
+        const check = document.createElement("input");
+        check.setAttribute("type", "checkbox");
+        div.appendChild(check);
+        check.addEventListener("click", () => {
+            if(check.checked) {
+                content.removeChild(div);
+                myTasks.splice(i, 1);
+            }
+        })
+    }
 }
