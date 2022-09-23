@@ -17,15 +17,11 @@ export function dropdown() {
 }
 
 export function addProject() {
-    const projects = document.querySelector(".dropdown-content");
-    const projectButton = document.createElement("li");
-    const icon = document.createElement("span");
-    icon.textContent = "add";
-    icon.classList.add("material-symbols-outlined");
-    projectButton.textContent = "Add project";
-    projectButton.classList.add("project-button");
-    projects.appendChild(projectButton);
-    projectButton.appendChild(icon);
+    const projectButton = document.querySelector(".project-button");
+    projectButton.addEventListener("click", () => {
+        document.querySelector(".page-mask").style.visibility = "visible";
+        document.querySelector("#project-form").style.visibility = "visible";
+    });
 }
 
 export function showForm() {
@@ -39,10 +35,14 @@ export function showForm() {
 export function hideForm() {
     const addButton = document.getElementById("add");
     const cancel = document.getElementById("cancel");
+    const cancelProject = document.getElementById("cancel-project");
+    const addProject = document.getElementById("projectName-button");
+
     addButton.addEventListener("click", () => {
         document.querySelector(".page-mask").style.visibility = "hidden";
         document.querySelector("form").style.visibility = "hidden";
     })
+
     cancel.addEventListener("click", () => {
         document.querySelector(".page-mask").style.visibility = "hidden";
         document.querySelector("form").style.visibility = "hidden";
@@ -51,7 +51,18 @@ export function hideForm() {
         document.getElementById("description").value = "";
         document.getElementById("priority").value = "1";
         document.getElementById("add").textContent = "Add task";
-    })   
+    }) 
+    
+    addProject.addEventListener("click", () => {
+        document.querySelector(".page-mask").style.visibility = "hidden";
+        document.querySelector("#project-form").style.visibility = "hidden";
+    })
+    
+    cancelProject.addEventListener("click", () => {
+        document.querySelector(".page-mask").style.visibility = "hidden";
+        document.querySelector("#project-form").style.visibility = "hidden";
+        document.getElementById("new-project").value = "";
+    })
 }
 
 export function showTasks() {
@@ -123,6 +134,7 @@ export function showTasks() {
         option.appendChild(drop);
 
         const expanded = document.createElement("div");
+        expanded.classList.add("column");
         drop.addEventListener("click", () => {
             if(drop.classList.contains("expanded")){
                 while(expanded.firstChild){
@@ -136,7 +148,7 @@ export function showTasks() {
                 div.appendChild(expanded);
                 drop.classList.add("expanded");
                 drop.textContent = "expand_less";
-                div.style.height = "115px";
+                div.style.height = "125px";
                 const desc = document.createElement("p");
                 desc.classList.add("expanded-content");
                 desc.textContent = `Description: ${myTasks[i].description}`;
