@@ -15,7 +15,7 @@
     visibility: hidden;
 }
 
-form {
+#task-data {
     position: fixed;
     left: 50%;
     top: 20%;
@@ -30,6 +30,33 @@ form {
     border-radius: 8px;
     overflow: hidden;
     visibility: hidden;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+#project-form {
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #CAF0F8;
+    position: fixed;
+    left: 50%;
+    top: 37%;
+    transform: translateX(-50%);
+    width: 35%;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    visibility: hidden;
+}
+
+#projectName-button {
+    width: 20%;
 }
 
 .grid-container  {
@@ -166,7 +193,8 @@ li:hover, li:focus {
     height: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 40px 75px;
+    grid-template-rows: 40px 85px;
+    overflow: hidden;
 }
 
 .options {
@@ -189,4 +217,8 @@ li:hover, li:focus {
 
 .expanded-content {
     margin-bottom: 5px;
+}
+
+.column {
+    grid-column: 1 / 3;
 }
