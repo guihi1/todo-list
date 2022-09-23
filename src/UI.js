@@ -63,9 +63,12 @@ export function showTasks() {
         const div = document.createElement("div");
         div.classList.add("task");
         content.appendChild(div);
+        const titleCont = document.createElement("div");
+        titleCont.classList.add("check-title");
+        div.appendChild(titleCont);
         const check = document.createElement("input");
         check.setAttribute("type", "checkbox");
-        div.appendChild(check);
+        titleCont.appendChild(check);
         check.addEventListener("click", () => {
             if(check.checked) {
                 content.removeChild(div);
@@ -75,15 +78,16 @@ export function showTasks() {
         })
         const p = document.createElement("p");
         p.textContent = `${myTasks[i].title}`;
-        div.appendChild(p);
-
-        const date = document.createElement("p");
-        date.textContent = `Time: ${myTasks[i].date.substring(11, 16)} Date: ${myTasks[i].date.substring(0, 10)}`;
-        div.appendChild(date);
+        titleCont.appendChild(p);
 
         const option = document.createElement("div");
         option.classList.add("options");
         div.appendChild(option);
+
+        const date = document.createElement("p");
+        date.textContent = `${myTasks[i].date.substring(0, 10)}`;
+        option.appendChild(date);
+
         const trash = document.createElement("span");
         trash.classList.add("trash");
         trash.classList.add("material-symbols-outlined");
@@ -117,8 +121,41 @@ export function showTasks() {
         drop.classList.add("drop");
         drop.textContent = "expand_more";
         option.appendChild(drop);
+
+        const expanded = document.createElement("div");
         drop.addEventListener("click", () => {
-            
+            if(drop.classList.contains("expanded")){
+                while(expanded.firstChild){
+                    expanded.removeChild(expanded.lastChild);
+                }
+                div.removeChild(expanded);
+                drop.textContent = "expand_more";
+                drop.classList.remove("expanded");
+                div.style.height = "40px";
+            } else {
+                div.appendChild(expanded);
+                drop.classList.add("expanded");
+                drop.textContent = "expand_less";
+                div.style.height = "115px";
+                const desc = document.createElement("p");
+                desc.classList.add("expanded-content");
+                desc.textContent = `Description: ${myTasks[i].description}`;
+                expanded.appendChild(desc);
+                const dueDate = document.createElement("p");
+                dueDate.classList.add("expanded-content");
+                dueDate.textContent = `Due date: ${myTasks[i].date.substring(0, 10)}, ${myTasks[i].date.substring(11, 16)}`;
+                expanded.appendChild(dueDate);
+                const priorityText = document.createElement("p");
+                priorityText.classList.add("expanded-content");
+                if(myTasks[i].priority == "1"){
+                    priorityText.textContent = "Priority: Low";
+                } else if(myTasks[i]. priority == "2"){
+                    priorityText.textContent = "Priority: Medium";
+                } else {
+                    priorityText.textContent = "Priority: High";
+                }
+                expanded.appendChild(priorityText);
+            }
         })
 
         const lineBreak = document.createElement("hr");
