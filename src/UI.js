@@ -22,6 +22,20 @@ export function addProject() {
         document.querySelector(".page-mask").style.visibility = "visible";
         document.querySelector("#project-form").style.visibility = "visible";
     });
+
+    const addProjectButton = document.getElementById("projectName-button");
+    addProjectButton.addEventListener("click", () => {
+        const projectsCont = document.querySelector(".dropdown-content");
+        let projectName = document.getElementById("new-project").value;
+        const projectDiv = document.createElement("li");
+        projectDiv.classList.add("start");
+        projectDiv.textContent = `${projectName}`;
+        projectsCont.appendChild(projectDiv);
+        const icon = document.createElement("span");
+        icon.classList.add("material-symbols-outlined");
+        icon.textContent = "delete";
+        projectDiv.appendChild(icon)
+    })
 }
 
 export function showForm() {
