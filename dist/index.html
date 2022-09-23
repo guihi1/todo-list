@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="page-mask"></div>
-    <form action="" method="post">
+    <form action="" method="post" id="task-data">
         <label for="title">Title</label>
         <input type="text" id="title" name="title">
         <label for="">Due date</label>
@@ -27,9 +27,17 @@
         <select name="project" id="project">
             <option value="inbox">Inbox</option>
         </select>
-        <div>
+        <div class="buttons">
             <button type="button" id="add">Add task</button>
             <button type="button" id="cancel">Cancel</button>
+        </div>
+    </form>
+    <form action="" method="post" id="project-form">
+        <label for="new-project">Project name</label>
+        <input type="text" id="new-project" name="project-name">
+        <div class="buttons">
+            <button type="button" id="projectName-button">Add project</button>
+            <button type="button" id="cancel-project">Cancel</button>
         </div>
     </form>
     <div class="grid-container">
@@ -49,7 +57,7 @@
             <div class="drop-menu">
                 <p class="dropdown-button">Projects <span id="expand" class="material-symbols-outlined">expand_more</span></p>
                 <ul class="dropdown-content">
-
+                    <li class="project-button"><span class="material-symbols-outlined">add</span> Add project</li>
                 </ul>
             </div>
         </div>
