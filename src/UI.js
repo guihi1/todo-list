@@ -1,4 +1,3 @@
-import { zhCN } from "date-fns/locale";
 import { myTasks } from "./index";
 
 export let index;
@@ -39,6 +38,7 @@ export function addProject() {
         projectDiv.addEventListener("click", () => {
             let anotherProject = myTasks.filter(x => x.project === projectName);
             showTasks(anotherProject);
+            document.querySelector("#content-title").textContent = projectName;
         })
     })
 }
@@ -141,7 +141,7 @@ export function showTasks(arr) {
         edit.textContent = "edit";
         option.appendChild(edit);
         edit.addEventListener("click", () => {
-            index = i;
+            index = myTasks.findIndex(el => el === arr[i]);
             document.querySelector("form").classList.add("editing");
             document.querySelector(".page-mask").style.visibility = "visible";
             document.querySelector("form").style.visibility = "visible";
@@ -199,3 +199,4 @@ export function showTasks(arr) {
         content.appendChild(lineBreak);
     }
 }
+
