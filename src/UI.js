@@ -1,3 +1,4 @@
+import { zhCN } from "date-fns/locale";
 import { myTasks } from "./index";
 
 export let index;
@@ -35,6 +36,10 @@ export function addProject() {
         icon.classList.add("material-symbols-outlined");
         icon.textContent = "delete";
         projectDiv.appendChild(icon)
+        projectDiv.addEventListener("click", () => {
+            let anotherProject = myTasks.filter(x => x.project === projectName);
+            showTasks(anotherProject);
+        })
     })
 }
 
@@ -64,6 +69,7 @@ export function hideForm() {
         document.getElementById("date").value = "";
         document.getElementById("description").value = "";
         document.getElementById("priority").value = "1";
+        document.getElementById("project").value = "inbox";
         document.getElementById("add").textContent = "Add task";
     }) 
     
@@ -79,12 +85,13 @@ export function hideForm() {
     })
 }
 
-export function showTasks() {
+export function showTasks(arr) {
+    console.log(arr);
     const content = document.querySelector(".tasks");
     while(content.firstChild){
         content.removeChild(content.lastChild);
     }
-    for(let i = 0; i < myTasks.length; i++){
+    for(let i = 0; i < arr.length; i++){
         const div = document.createElement("div");
         div.classList.add("task");
         content.appendChild(div);
@@ -97,12 +104,14 @@ export function showTasks() {
         check.addEventListener("click", () => {
             if(check.checked) {
                 content.removeChild(div);
-                myTasks.splice(i, 1);
-                showTasks();
+                let projectIndex = myTasks.findIndex(el => el === arr[i]);
+                myTasks.splice(projectIndex, 1);
+                arr.splice(i, 1);
+                showTasks(arr);
             }
         })
         const p = document.createElement("p");
-        p.textContent = `${myTasks[i].title}`;
+        p.textContent = `${arr[i].title}`;
         titleCont.appendChild(p);
 
         const option = document.createElement("div");
@@ -110,7 +119,7 @@ export function showTasks() {
         div.appendChild(option);
 
         const date = document.createElement("p");
-        date.textContent = `${myTasks[i].date.substring(0, 10)}`;
+        date.textContent = `${arr[i].date.substring(0, 10)}`;
         option.appendChild(date);
 
         const trash = document.createElement("span");
@@ -120,8 +129,10 @@ export function showTasks() {
         option.appendChild(trash);
         trash.addEventListener("click", () => {
             content.removeChild(div);
-            myTasks.splice(i, 1);
-            showTasks();
+            let projectIndex = myTasks.findIndex(el => el === arr[i]);
+            myTasks.splice(projectIndex, 1);
+            arr.splice(i, 1);
+            showTasks(arr);
         })
         
         const edit = document.createElement("span");
@@ -134,10 +145,10 @@ export function showTasks() {
             document.querySelector("form").classList.add("editing");
             document.querySelector(".page-mask").style.visibility = "visible";
             document.querySelector("form").style.visibility = "visible";
-            document.getElementById("title").value = myTasks[i].title;
-            document.getElementById("date").value = myTasks[i].date;
-            document.getElementById("description").value = myTasks[i].description;
-            document.getElementById("priority").value = myTasks[i].priority;
+            document.getElementById("title").value = arr[i].title;
+            document.getElementById("date").value = arr[i].date;
+            document.getElementById("description").value = arr[i].description;
+            document.getElementById("priority").value = arr[i].priority;
             document.getElementById("add").textContent = "Edit task";
         })
 
@@ -165,17 +176,17 @@ export function showTasks() {
                 div.style.height = "125px";
                 const desc = document.createElement("p");
                 desc.classList.add("expanded-content");
-                desc.textContent = `Description: ${myTasks[i].description}`;
+                desc.textContent = `Description: ${arr[i].description}`;
                 expanded.appendChild(desc);
                 const dueDate = document.createElement("p");
                 dueDate.classList.add("expanded-content");
-                dueDate.textContent = `Due date: ${myTasks[i].date.substring(0, 10)}, ${myTasks[i].date.substring(11, 16)}`;
+                dueDate.textContent = `Due date: ${arr[i].date.substring(0, 10)}, ${arr[i].date.substring(11, 16)}`;
                 expanded.appendChild(dueDate);
                 const priorityText = document.createElement("p");
                 priorityText.classList.add("expanded-content");
-                if(myTasks[i].priority == "1"){
+                if(arr[i].priority == "1"){
                     priorityText.textContent = "Priority: Low";
-                } else if(myTasks[i]. priority == "2"){
+                } else if(arr[i]. priority == "2"){
                     priorityText.textContent = "Priority: Medium";
                 } else {
                     priorityText.textContent = "Priority: High";
