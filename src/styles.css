@@ -223,6 +223,6 @@ li:hover, li:focus {
     grid-column: 1 / 3;
 }
 
-.start {
+.flex-justify {
     justify-content: space-between;
 }
