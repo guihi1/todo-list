@@ -2,15 +2,17 @@ import "./styles.css";
 import { dropdown, addProject, showForm, hideForm, showTasks, index } from "./UI";
 import { task } from "./constructor";
 import { newProject, showProjectTasks, today } from "./project";
+import { populateStorage, rememberTasks, deleteFromStorage } from "./storage";
 
+export let myTasks = [];
+
+rememberTasks();
 dropdown();
 addProject();
 showForm();
 hideForm();
 newProject();
 showProjectTasks();
-
-export let myTasks = [];
 
 const addButton = document.getElementById("add");
 addButton.addEventListener("click", () => {
@@ -21,6 +23,7 @@ addButton.addEventListener("click", () => {
         let description = document.getElementById("description").value;
         let project = document.getElementById("project").value;
         myTasks[index] = new task(title, date, priority, description, project);
+        deleteFromStorage();
         document.querySelector("form").classList.remove("editing");
         document.getElementById("add").textContent = "Add task";
         document.getElementById("title").value = "";
@@ -49,6 +52,7 @@ addButton.addEventListener("click", () => {
         let project = document.getElementById("project").value;
         const newTask = new task(title, date, priority, description, project);
         myTasks.push(newTask);
+        populateStorage();
         document.getElementById("title").value = "";
         document.getElementById("date").value = "";
         document.getElementById("description").value = "";
