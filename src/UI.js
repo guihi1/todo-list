@@ -1,3 +1,4 @@
+import { task } from "./constructor";
 import { myTasks } from "./index";
 import { deleteFromStorage } from "./storage";
 
@@ -18,6 +19,33 @@ export function dropdown() {
 }
 
 export function addProject() {
+    let projectNameArray = [];
+    for(const task of myTasks){
+        if(task.project !== "inbox"){
+            projectNameArray.push(task.project);
+        }
+    }
+
+    let uniqueProjectName = Array.from(new Set(projectNameArray));
+    
+    for(let i = 0; i < uniqueProjectName.length; i++) {
+        const projectsCont = document.querySelector(".dropdown-content");
+        let projectName = uniqueProjectName[i];
+        const projectDiv = document.createElement("li");
+        projectDiv.classList.add("flex-justify");
+        projectDiv.textContent = `${projectName}`;
+        projectsCont.appendChild(projectDiv);
+        const icon = document.createElement("span");
+        icon.classList.add("material-symbols-outlined");
+        icon.textContent = "delete";
+        projectDiv.appendChild(icon);
+        projectDiv.addEventListener("click", () => {
+            let anotherProject = myTasks.filter(x => x.project === projectName);
+            showTasks(anotherProject);
+            document.querySelector("#content-title").textContent = projectName;
+        })
+    }
+
     const projectButton = document.querySelector(".project-button");
     projectButton.addEventListener("click", () => {
         document.querySelector(".page-mask").style.visibility = "visible";
@@ -29,13 +57,13 @@ export function addProject() {
         const projectsCont = document.querySelector(".dropdown-content");
         let projectName = document.getElementById("new-project").value;
         const projectDiv = document.createElement("li");
-        projectDiv.classList.add("start");
+        projectDiv.classList.add("flex-justify");
         projectDiv.textContent = `${projectName}`;
         projectsCont.appendChild(projectDiv);
         const icon = document.createElement("span");
         icon.classList.add("material-symbols-outlined");
         icon.textContent = "delete";
-        projectDiv.appendChild(icon)
+        projectDiv.appendChild(icon);
         projectDiv.addEventListener("click", () => {
             let anotherProject = myTasks.filter(x => x.project === projectName);
             showTasks(anotherProject);
@@ -87,7 +115,6 @@ export function hideForm() {
 }
 
 export function showTasks(arr) {
-    console.log(arr);
     const content = document.querySelector(".tasks");
     while(content.firstChild){
         content.removeChild(content.lastChild);
