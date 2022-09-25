@@ -193,7 +193,7 @@ li:hover, li:focus {
     height: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 40px 85px;
+    grid-template-rows: 40px 105px;
     overflow: hidden;
 }
 
