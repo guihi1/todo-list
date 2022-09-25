@@ -1,4 +1,5 @@
 import { myTasks } from "./index";
+import { deleteFromStorage } from "./storage";
 
 export let index;
 export function dropdown() {
@@ -106,7 +107,7 @@ export function showTasks(arr) {
                 content.removeChild(div);
                 let projectIndex = myTasks.findIndex(el => el === arr[i]);
                 myTasks.splice(projectIndex, 1);
-                arr.splice(i, 1);
+                deleteFromStorage();
                 showTasks(arr);
             }
         })
@@ -131,7 +132,7 @@ export function showTasks(arr) {
             content.removeChild(div);
             let projectIndex = myTasks.findIndex(el => el === arr[i]);
             myTasks.splice(projectIndex, 1);
-            arr.splice(i, 1);
+            deleteFromStorage();
             showTasks(arr);
         })
         
