@@ -149,6 +149,7 @@ export function showTasks(arr) {
             document.getElementById("date").value = arr[i].date;
             document.getElementById("description").value = arr[i].description;
             document.getElementById("priority").value = arr[i].priority;
+            document.getElementById("project").value = arr[i].project;
             document.getElementById("add").textContent = "Edit task";
         })
 
@@ -173,7 +174,7 @@ export function showTasks(arr) {
                 div.appendChild(expanded);
                 drop.classList.add("expanded");
                 drop.textContent = "expand_less";
-                div.style.height = "125px";
+                div.style.height = "145px";
                 const desc = document.createElement("p");
                 desc.classList.add("expanded-content");
                 desc.textContent = `Description: ${arr[i].description}`;
@@ -192,6 +193,9 @@ export function showTasks(arr) {
                     priorityText.textContent = "Priority: High";
                 }
                 expanded.appendChild(priorityText);
+                const projectDetail = document.createElement("p");
+                projectDetail.textContent = `Project: ${arr[i].project}`;
+                expanded.appendChild(projectDetail);
             }
         })
 
