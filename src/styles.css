@@ -196,6 +196,8 @@ li:hover, li:focus {
     grid-template-rows: 40px 105px;
     overflow: hidden;
     transition: height 0.5s;
+    border-radius: 5px;
+    margin-bottom: 2px;
 }
 
 .options {
@@ -214,10 +216,12 @@ li:hover, li:focus {
     display: flex;
     align-items: center;
     gap: 15px;
+    margin-left: 5px;
 }
 
 .expanded-content {
     margin-bottom: 5px;
+    margin-left: 5px;
 }
 
 .column {
